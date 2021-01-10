@@ -17,9 +17,22 @@ const HomeStack = createStackNavigator({
   Home: Home
 });
 
-const CarStack = createStackNavigator({
-  Car: CarHome
-});
+const CarStack = createStackNavigator(
+  {
+    Car: CarHome
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: "#56CCF2"
+      },
+      headerTintColor: "#fff",
+      headerTitleStyle: {
+        fontWeight: "bold"
+      }
+    }
+  }
+);
 
 const ProfileStack = createStackNavigator({
   Profile: Profile
@@ -34,6 +47,10 @@ const TabNavigator = createBottomTabNavigator({
     screen: HomeStack,
     navigationOptions: {
       tabBarLabel: "Home",
+      tabBarOptions: {
+        activeTintColor: "#56CCF2",
+        inactiveTintColor: "#000"
+      },
       tabBarIcon: ({ tintColor }) => (
         <MaterialCommunityIcons name="home" size={24} color={tintColor} />
       )
@@ -43,6 +60,10 @@ const TabNavigator = createBottomTabNavigator({
     screen: CarStack,
     navigationOptions: {
       tabBarLabel: "Car",
+      tabBarOptions: {
+        activeTintColor: "#56CCF2",
+        inactiveTintColor: "#000"
+      },
       tabBarIcon: ({ tintColor }) => (
         <MaterialCommunityIcons name="car" size={24} color={tintColor} />
       )
@@ -52,6 +73,10 @@ const TabNavigator = createBottomTabNavigator({
     screen: ProfileStack,
     navigationOptions: {
       tabBarLabel: "profile",
+      tabBarOptions: {
+        activeTintColor: "#56CCF2",
+        inactiveTintColor: "#000"
+      },
       tabBarIcon: ({ tintColor }) => (
         <MaterialCommunityIcons name="account" size={24} color={tintColor} />
       )
@@ -61,6 +86,10 @@ const TabNavigator = createBottomTabNavigator({
     screen: SettingStack,
     navigationOptions: {
       tabBarLabel: "Setting",
+      tabBarOptions: {
+        activeTintColor: "#56CCF2",
+        inactiveTintColor: "#000"
+      },
       tabBarIcon: ({ tintColor }) => (
         <MaterialCommunityIcons name="settings" size={24} color={tintColor} />
       )

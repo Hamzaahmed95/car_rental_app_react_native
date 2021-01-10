@@ -1,5 +1,7 @@
 import React from "react";
-import { Text, View, Image, StyleSheet } from "react-native";
+import { Text, View, Image, StyleSheet, StatusBar } from "react-native";
+import { commonNavigation } from "../../utilities/AppUtils";
+
 const Driving = props => {
   return (
     <View style={styles.container}>
@@ -7,6 +9,16 @@ const Driving = props => {
         style={styles.tinyLogo}
         source={require("../../../assets/car.png")}
       />
+      <Text style={styles.content}>Not driving a car yet</Text>
+      <View style={styles.buttonContainer}>
+        <Text style={styles.buttonContent}>MAKE A RESERVATION</Text>
+      </View>
+      <View style={styles.bottomContainer}>
+        <Text style={styles.content}>Want to earn using your car?</Text>
+        <View style={styles.buttonBottomContainer}>
+          <Text style={styles.buttonContent}>LIST YOUR CAR</Text>
+        </View>
+      </View>
     </View>
   );
 };
@@ -19,7 +31,41 @@ const styles = StyleSheet.create({
   tinyLogo: {
     width: 286,
     height: 211
+  },
+  content: {
+    fontSize: 14,
+    marginTop: 30,
+    color: "black",
+    fontWeight: "bold",
+    fontFamily: "Roboto"
+  },
+  buttonContent: {
+    fontFamily: "Roboto",
+    fontSize: 14,
+    color: "white"
+  },
+  buttonContainer: {
+    backgroundColor: "#56CCF2",
+    marginTop: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    width: 196,
+    height: 36
+  },
+  buttonBottomContainer: {
+    backgroundColor: "#56CCF2",
+    marginTop: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    width: 143,
+    height: 36
+  },
+  bottomContainer: {
+    paddingBottom: 50,
+    position: "absolute",
+    alignItems: "center",
+    bottom: 0
   }
 });
-
+Driving.navigationOptions = commonNavigation("Driving");
 export default Driving;

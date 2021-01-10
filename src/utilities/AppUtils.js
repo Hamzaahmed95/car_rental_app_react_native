@@ -65,7 +65,7 @@ export const commonNavigation = name => {
   return {
     title: name,
     headerStyle: {
-      backgroundColor: "#0BB5FF",
+      backgroundColor: "#56CCF2",
       elevation: 0,
       shadowOpacity: 0
     },

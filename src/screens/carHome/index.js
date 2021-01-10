@@ -34,13 +34,23 @@ const TabNavigator = createMaterialTopTabNavigator({
   DriveScreen: {
     screen: DrivingStack,
     navigationOptions: {
-      tabBarLabel: "DRIVING NOW"
+      tabBarLabel: "DRIVING NOW",
+      tabBarOptions: {
+        style: {
+          backgroundColor: "#56CCF2" //color you want to change
+        }
+      }
     }
   },
   PastBookingScreen: {
     screen: PastBookStack,
     navigationOptions: {
-      tabBarLabel: "PAST BOOKINGS"
+      tabBarLabel: "PAST BOOKINGS",
+      tabBarOptions: {
+        style: {
+          backgroundColor: "#56CCF2" //color you want to change
+        }
+      }
     }
   }
 });

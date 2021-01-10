@@ -1,10 +1,11 @@
 import React from "react";
 import { StyleSheet, StatusBar, View } from "react-native";
+import { statusBarColor } from "../utilities/Constants";
 
 const AppStatusBar = ({ backgroundColor, ...props }) => {
   return (
-    <View style={[styles.statusBar, backgroundColor]}>
-      <StatusBar backgroundColor={backgroundColor} {...props} />
+    <View style={[styles.statusBar]}>
+      <StatusBar backgroundColor={statusBarColor} {...props} />
     </View>
   );
 };
