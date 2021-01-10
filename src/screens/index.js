@@ -10,7 +10,7 @@ import Home from "./home";
 import CarDetail from "./car/index";
 import Profile from "./profile";
 import Setting from "./setting";
-
+import Reservation from "./reservation";
 import CarHome from "./carHome";
 
 const HomeStack = createStackNavigator({
@@ -20,7 +20,8 @@ const HomeStack = createStackNavigator({
 const CarStack = createStackNavigator(
   {
     Car: CarHome,
-    CarDetail: CarDetail
+    CarDetail: CarDetail,
+    Reservation: Reservation
   },
   {
     defaultNavigationOptions: {

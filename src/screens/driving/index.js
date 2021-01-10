@@ -10,9 +10,14 @@ const Driving = props => {
         source={require("../../../assets/car.png")}
       />
       <Text style={styles.content}>Not driving a car yet</Text>
-      <View style={styles.buttonContainer}>
+      <TouchableOpacity
+        style={styles.buttonContainer}
+        onPress={() => {
+          props.navigation.navigate("Reservation");
+        }}
+      >
         <Text style={styles.buttonContent}>MAKE A RESERVATION</Text>
-      </View>
+      </TouchableOpacity>
       <View style={styles.bottomContainer}>
         <Text style={styles.content}>Want to earn using your car?</Text>
         <TouchableOpacity
