@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, Image, StyleSheet, StatusBar } from "react-native";
+import { Text, View, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { commonNavigation } from "../../utilities/AppUtils";
 
 const Driving = props => {
@@ -15,9 +15,14 @@ const Driving = props => {
       </View>
       <View style={styles.bottomContainer}>
         <Text style={styles.content}>Want to earn using your car?</Text>
-        <View style={styles.buttonBottomContainer}>
+        <TouchableOpacity
+          style={styles.buttonBottomContainer}
+          onPress={() => {
+            props.navigation.navigate("CarDetail");
+          }}
+        >
           <Text style={styles.buttonContent}>LIST YOUR CAR</Text>
-        </View>
+        </TouchableOpacity>
       </View>
     </View>
   );

@@ -7,7 +7,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 // import screen components
 import Home from "./home";
-import Car from "./car/index";
+import CarDetail from "./car/index";
 import Profile from "./profile";
 import Setting from "./setting";
 
@@ -19,7 +19,8 @@ const HomeStack = createStackNavigator({
 
 const CarStack = createStackNavigator(
   {
-    Car: CarHome
+    Car: CarHome,
+    CarDetail: CarDetail
   },
   {
     defaultNavigationOptions: {
