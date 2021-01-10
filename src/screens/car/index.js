@@ -5,6 +5,7 @@ import { globalStyles } from "../../styles/global";
 import { styles } from "./styles";
 import ImagePickerComp from "../../utilities/ImagePicker";
 import { useForm } from "../../customHooks/useForm";
+import Toast from "react-native-toast-message";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
 import {
   fuelData,
@@ -54,7 +55,11 @@ const Car = props => {
       isLoading(true);
       setTimeout(() => {
         props.navigation.goBack();
-      }, 5000);
+        Toast.show({
+          text1: "Congrats",
+          text2: "Car added succesfully 👋"
+        });
+      }, 3000);
       console.log(object);
     }
   };
