@@ -31,5 +31,10 @@ export const styles = StyleSheet.create({
     borderColor: "#3B5998",
     fontSize: 18,
     borderRadius: 6
+  },
+  animatedCircular: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
   }
 });

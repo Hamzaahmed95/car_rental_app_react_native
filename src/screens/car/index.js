@@ -28,7 +28,7 @@ import {
 } from "react-native";
 LogBox.ignoreLogs(["Warning: ..."]); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //Ignore all log notifications
-const Car = () => {
+const Car = props => {
   const [values, handleChange] = useForm({
     name: "",
     color: "",
@@ -52,11 +52,11 @@ const Car = () => {
       showAlert();
     } else {
       isLoading(true);
+      setTimeout(() => {
+        props.navigation.goBack();
+      }, 5000);
       console.log(object);
     }
-  };
-  animationBegin = () => {
-    setTimeout(() => {}, 3000);
   };
 
   useEffect(() => {
@@ -68,6 +68,7 @@ const Car = () => {
     <View style={globalStyles.container}>
       {Loading ? (
         <AnimatedCircularProgress
+          style={styles.animatedCircular}
           size={50}
           width={10}
           fill={100}
