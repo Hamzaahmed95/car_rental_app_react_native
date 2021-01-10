@@ -32,10 +32,16 @@ const PastBookStack = createStackNavigator(
 
 const TabNavigator = createMaterialTopTabNavigator({
   DriveScreen: {
-    screen: DrivingStack
+    screen: DrivingStack,
+    navigationOptions: {
+      tabBarLabel: "DRIVING NOW"
+    }
   },
   PastBookingScreen: {
-    screen: PastBookStack
+    screen: PastBookStack,
+    navigationOptions: {
+      tabBarLabel: "PAST BOOKINGS"
+    }
   }
 });
 
