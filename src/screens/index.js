@@ -11,12 +11,14 @@ import Car from "./car/index";
 import Profile from "./profile";
 import Setting from "./setting";
 
+import CarHome from "./carHome";
+
 const HomeStack = createStackNavigator({
   Home: Home
 });
 
 const CarStack = createStackNavigator({
-  Car: Car
+  Car: CarHome
 });
 
 const ProfileStack = createStackNavigator({

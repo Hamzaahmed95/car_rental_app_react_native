@@ -13,6 +13,6 @@ const Setting = props => {
     </View>
   );
 };
-Setting.navigationOptions = commonNavigation("Profile");
+Setting.navigationOptions = commonNavigation("Setting");
 
 export default Setting;
