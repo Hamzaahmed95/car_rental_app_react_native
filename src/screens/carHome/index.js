@@ -3,7 +3,6 @@ import React from "react";
 import { createAppContainer } from "react-navigation";
 import { createMaterialTopTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 // import screen components
 import DrivingScreen from "../driving/index";

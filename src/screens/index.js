@@ -44,7 +44,7 @@ const TabNavigator = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: "Car",
       tabBarIcon: ({ tintColor }) => (
-        <MaterialCommunityIcons name="notebook" size={24} color={tintColor} />
+        <MaterialCommunityIcons name="car" size={24} color={tintColor} />
       )
     }
   },
@@ -53,7 +53,7 @@ const TabNavigator = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: "profile",
       tabBarIcon: ({ tintColor }) => (
-        <MaterialCommunityIcons name="star" size={24} color={tintColor} />
+        <MaterialCommunityIcons name="account" size={24} color={tintColor} />
       )
     }
   },
