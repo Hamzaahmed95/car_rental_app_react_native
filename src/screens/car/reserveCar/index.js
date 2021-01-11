@@ -8,11 +8,11 @@ import {
   StyleSheet,
   TouchableOpacity
 } from "react-native";
-import { commonNavigation } from "../../utilities/AppUtils";
-import { carData } from "../../utilities/Constants";
-import CarList from "../CarList/index";
+import { commonNavigation } from "../../../utilities/AppUtils";
+import { carData } from "../../../utilities/Constants";
+import CarList from "../../../components/CarList";
 
-const Reservation = props => {
+const ReserveCarScreen = props => {
   const handleSubmit = () => {
     props.navigation.navigate("Driving", { status: true });
   };
@@ -27,7 +27,7 @@ const Reservation = props => {
         >
           <Image
             style={styles.tinyLogo}
-            source={require("../../../assets/time.png")}
+            source={require("../../../../assets/time.png")}
           />
           <Text style={styles.buttonContent}>00:30 AM - Wed, 28/09/2020</Text>
         </TouchableOpacity>
@@ -39,7 +39,7 @@ const Reservation = props => {
         >
           <Image
             style={styles.tinyLogo}
-            source={require("../../../assets/end.png")}
+            source={require("../../../../assets/end.png")}
           />
           <Text style={styles.buttonContent}>00:30 AM - Wed, 28/09/2020</Text>
         </TouchableOpacity>
@@ -102,5 +102,5 @@ const styles = StyleSheet.create({
     bottom: 0
   }
 });
-Reservation.navigationOptions = commonNavigation("Reservation");
-export default Reservation;
+ReserveCarScreen.navigationOptions = commonNavigation("Make a Reservation");
+export default ReserveCarScreen;

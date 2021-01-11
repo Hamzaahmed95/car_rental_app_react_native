@@ -1,27 +1,26 @@
 import React from "react";
-import { Text, View, ScrollView, Button } from "react-native";
-import { createAppContainer, createSwitchNavigator } from "react-navigation";
+import { createAppContainer } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 // import screen components
-import Home from "./home";
-import CarDetail from "./car/index";
-import Profile from "./profile";
-import Setting from "./setting";
-import Reservation from "./reservation";
-import CarHome from "./carHome";
+import HomeScreen from "./home";
+import ListYourCarScreen from "./car/listYourCar/index";
+import ProfileScreen from "./profile";
+import SettingScreen from "./setting";
+import ReserveCarScreen from "./car/reserveCar/index";
+import CarScreen from "./car";
 
 const HomeStack = createStackNavigator({
-  Home: Home
+  Home: HomeScreen
 });
 
 const CarStack = createStackNavigator(
   {
-    Car: CarHome,
-    CarDetail: CarDetail,
-    Reservation: Reservation
+    Car: CarScreen,
+    ListYourCar: ListYourCarScreen,
+    ReserveCar: ReserveCarScreen
   },
   {
     defaultNavigationOptions: {
@@ -37,11 +36,11 @@ const CarStack = createStackNavigator(
 );
 
 const ProfileStack = createStackNavigator({
-  Profile: Profile
+  Profile: ProfileScreen
 });
 
 const SettingStack = createStackNavigator({
-  Setting: Setting
+  Setting: SettingScreen
 });
 
 const TabNavigator = createBottomTabNavigator({

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Text, View, Image, StyleSheet, TouchableOpacity } from "react-native";
-import { commonNavigation } from "../../utilities/AppUtils";
+import { commonNavigation } from "../../../../utilities/AppUtils";
 import ActiveCar from "../activeCar/index";
 
-const Driving = props => {
+const DriveNowScreen = props => {
   const [driving, isDriving] = useState(false);
   return (
     <View style={styles.container}>
@@ -13,13 +13,13 @@ const Driving = props => {
         <View style={styles.containersub}>
           <Image
             style={styles.tinyLogo}
-            source={require("../../../assets/car.png")}
+            source={require("../../../../../assets/car.png")}
           />
           <Text style={styles.content}>Not driving a car yet</Text>
           <TouchableOpacity
             style={styles.buttonContainer}
             onPress={() => {
-              props.navigation.navigate("Reservation");
+              props.navigation.navigate("ReserveCar");
             }}
           >
             <Text style={styles.buttonContent}>MAKE A RESERVATION</Text>
@@ -29,7 +29,7 @@ const Driving = props => {
             <TouchableOpacity
               style={styles.buttonBottomContainer}
               onPress={() => {
-                props.navigation.navigate("CarDetail");
+                props.navigation.navigate("ListYourCar");
               }}
             >
               <Text style={styles.buttonContent}>LIST YOUR CAR</Text>
@@ -91,5 +91,5 @@ const styles = StyleSheet.create({
     bottom: 0
   }
 });
-Driving.navigationOptions = commonNavigation("Driving");
-export default Driving;
+DriveNowScreen.navigationOptions = commonNavigation("Drive Now");
+export default DriveNowScreen;

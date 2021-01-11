@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, TouchableOpacity, View, Image, StyleSheet } from "react-native";
-const ActiveCar = () => {
+const ActiveCarScreen = () => {
   return (
     <View style={styles.container}>
       <Text style={{ paddingLeft: 10, fontSize: 20, fontWeight: "500" }}>
@@ -12,7 +12,7 @@ const ActiveCar = () => {
       <View style={styles.subContainer}>
         <Image
           style={styles.tinyLogo}
-          source={require("../../../assets/reserved.png")}
+          source={require("../../../../../assets/reserved.png")}
         />
       </View>
       <View style={styles.subContent}>
@@ -109,4 +109,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ActiveCar;
+export default ActiveCarScreen;
