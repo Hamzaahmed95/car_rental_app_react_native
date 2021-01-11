@@ -26,6 +26,7 @@ import {
   Text,
   YellowBox,
   LogBox,
+  Platform,
   TouchableOpacity,
   ScrollView
 } from "react-native";
@@ -55,14 +56,8 @@ const ListYourCarScreen = props => {
       showAlert();
     } else {
       isLoading(true);
-      storeHighScore("hamzaahmed", object);
-      setTimeout(() => {
-        props.navigation.goBack();
-        Toast.show({
-          text1: "Congrats",
-          text2: "Car added succesfully 👋"
-        });
-      }, 3000);
+
+      storeCarList(object);
       console.log(object);
     }
   };
@@ -75,6 +70,51 @@ const ListYourCarScreen = props => {
   //       console.log("New car added: " + car);
   //     });
   // };
+
+  async function uploadImageAsync(uri, name) {
+    const blob = await new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.onload = function () {
+        resolve(xhr.response);
+      };
+      xhr.onerror = function (e) {
+        console.log(e);
+        reject(new TypeError("Network request failed"));
+      };
+      xhr.responseType = "blob";
+      xhr.open("GET", uri, true);
+      xhr.send(null);
+    });
+
+    const ref = firebase
+      .storage()
+      .ref()
+      .child("uploads/" + name);
+    const snapshot = await ref.put(blob);
+
+    // We're done with the blob, close and release it
+    blob.close();
+
+    return await snapshot.ref.getDownloadURL();
+  }
+
+  const storeCarList = item => {
+    var postListRef = firebase.database().ref("rentCarsList");
+    var newPostRef = postListRef.push();
+    newPostRef
+      .set(item)
+      .then(uploadImageAsync(image, values.name))
+      .then(response => console.log(response))
+      .catch(err => console.log("error: " + err));
+
+    // setTimeout(() => {
+    //   props.navigation.goBack();
+    //   Toast.show({
+    //     text1: "Congrats",
+    //     text2: "Car added succesfully 👋"
+    //   });
+    // }, 2000)
+  };
   const storeHighScore = (userId, carItem) => {
     firebase
       .database()
