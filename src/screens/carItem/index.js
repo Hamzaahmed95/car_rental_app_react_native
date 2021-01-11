@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 
 const CarItem = props => {
   return (
@@ -24,7 +24,9 @@ const CarItem = props => {
       />
       <View style={styles.carrateContainer}>
         <Text style={styles.carratefont}>MYR 20.00 / HR</Text>
-        <Text style={styles.carratefontB}>BOOK NOW</Text>
+        <TouchableOpacity onPress={props.handleSubmit}>
+          <Text style={styles.carratefontB}>BOOK NOW</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

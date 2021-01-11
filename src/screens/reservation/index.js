@@ -13,6 +13,9 @@ import { carData } from "../../utilities/Constants";
 import CarList from "../CarList/index";
 
 const Reservation = props => {
+  const handleSubmit = () => {
+    props.navigation.navigate("Driving", { status: true });
+  };
   return (
     <View style={styles.container}>
       <View style={styles.subcontainer}>
@@ -41,7 +44,7 @@ const Reservation = props => {
           <Text style={styles.buttonContent}>00:30 AM - Wed, 28/09/2020</Text>
         </TouchableOpacity>
       </View>
-      <CarList data={carData} />
+      <CarList handleSubmit={handleSubmit} data={carData} />
     </View>
   );
 };

@@ -9,7 +9,11 @@ const CarList = props => {
       <FlatList
         data={props.data}
         renderItem={({ item }) => (
-          <CarItem name={item.name} color={item.color} />
+          <CarItem
+            handleSubmit={props.handleSubmit}
+            name={item.name}
+            color={item.color}
+          />
         )}
       />
     </SafeAreaView>

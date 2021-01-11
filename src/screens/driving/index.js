@@ -4,7 +4,7 @@ import { commonNavigation } from "../../utilities/AppUtils";
 import ActiveCar from "../activeCar/index";
 
 const Driving = props => {
-  const [driving, isDriving] = useState(true);
+  const [driving, isDriving] = useState(false);
   return (
     <View style={styles.container}>
       {driving ? (

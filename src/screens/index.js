@@ -51,7 +51,7 @@ const TabNavigator = createBottomTabNavigator({
       tabBarLabel: "Home",
       tabBarOptions: {
         activeTintColor: "#56CCF2",
-        inactiveTintColor: "#000"
+        inactiveTintColor: "rgba(0, 0, 0, 0.38)"
       },
       tabBarIcon: ({ tintColor }) => (
         <MaterialCommunityIcons name="home" size={24} color={tintColor} />
@@ -64,7 +64,7 @@ const TabNavigator = createBottomTabNavigator({
       tabBarLabel: "Car",
       tabBarOptions: {
         activeTintColor: "#56CCF2",
-        inactiveTintColor: "#000"
+        inactiveTintColor: "rgba(0, 0, 0, 0.38)"
       },
       tabBarIcon: ({ tintColor }) => (
         <MaterialCommunityIcons name="car" size={24} color={tintColor} />
@@ -77,7 +77,7 @@ const TabNavigator = createBottomTabNavigator({
       tabBarLabel: "profile",
       tabBarOptions: {
         activeTintColor: "#56CCF2",
-        inactiveTintColor: "#000"
+        inactiveTintColor: "rgba(0, 0, 0, 0.38)"
       },
       tabBarIcon: ({ tintColor }) => (
         <MaterialCommunityIcons name="account" size={24} color={tintColor} />
@@ -90,7 +90,7 @@ const TabNavigator = createBottomTabNavigator({
       tabBarLabel: "Setting",
       tabBarOptions: {
         activeTintColor: "#56CCF2",
-        inactiveTintColor: "#000"
+        inactiveTintColor: "rgba(0, 0, 0, 0.38)"
       },
       tabBarIcon: ({ tintColor }) => (
         <MaterialCommunityIcons name="settings" size={24} color={tintColor} />
