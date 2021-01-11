@@ -1,10 +1,15 @@
 import { StyleSheet } from "react-native";
+import {
+  appBackgrounColor,
+  appColor,
+  btnFontColor
+} from "../../../../utilities/Consants/Colors";
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
-    backgroundColor: "#fff"
+    backgroundColor: appBackgrounColor
   },
   containersub: {
     flex: 1,
@@ -26,10 +31,10 @@ export const styles = StyleSheet.create({
   buttonContent: {
     fontFamily: "Roboto",
     fontSize: 14,
-    color: "white"
+    color: btnFontColor
   },
   buttonContainer: {
-    backgroundColor: "#56CCF2",
+    backgroundColor: appColor,
     marginTop: 10,
     alignItems: "center",
     justifyContent: "center",
@@ -37,7 +42,7 @@ export const styles = StyleSheet.create({
     height: 36
   },
   buttonBottomContainer: {
-    backgroundColor: "#56CCF2",
+    backgroundColor: appColor,
     marginTop: 10,
     alignItems: "center",
     justifyContent: "center",
