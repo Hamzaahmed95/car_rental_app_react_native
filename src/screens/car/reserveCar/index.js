@@ -9,7 +9,7 @@ import {
   TouchableOpacity
 } from "react-native";
 import { commonNavigation } from "../../../utilities/AppUtils";
-import { carData } from "../../../utilities/Constants";
+import { carData } from "../../../utilities/dummyData/index";
 import CarList from "../../../components/CarList";
 
 const ReserveCarScreen = props => {
