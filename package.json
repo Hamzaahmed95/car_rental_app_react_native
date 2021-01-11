@@ -19,6 +19,7 @@
     "expo-image-picker": "~9.2.0",
     "expo-secure-store": "^9.2.0",
     "expo-status-bar": "~1.0.2",
+    "firebase": "^8.2.2",
     "graphql": "^15.4.0",
     "moment": "^2.29.1",
     "react": "16.13.1",

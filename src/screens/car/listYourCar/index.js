@@ -7,6 +7,8 @@ import ImagePickerComp from "../../../utilities/ImagePicker";
 import { useForm } from "../../../customHooks/useForm";
 import Toast from "react-native-toast-message";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
+import firebase from "firebase";
+
 import {
   fuelData,
   typeData,
@@ -53,6 +55,7 @@ const ListYourCarScreen = props => {
       showAlert();
     } else {
       isLoading(true);
+      storeHighScore("hamzaahmed", object);
       setTimeout(() => {
         props.navigation.goBack();
         Toast.show({
@@ -63,10 +66,38 @@ const ListYourCarScreen = props => {
       console.log(object);
     }
   };
+  // const setUpCarListedListener = userId => {
+  //   firebase
+  //     .database()
+  //     .ref("cars/" + userId)
+  //     .on("value", snapshot => {
+  //       const car = snapshot.val().car;
+  //       console.log("New car added: " + car);
+  //     });
+  // };
+  const storeHighScore = (userId, carItem) => {
+    firebase
+      .database()
+      .ref("cars/" + userId)
+      .set({
+        car: carItem
+      })
+      .then(response => {
+        console.log(response);
+        // navigation.navigate("Home", { user: data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
   useEffect(() => {
     YellowBox.ignoreWarnings(["Animated: `useNativeDriver`"]);
     checkImageStatus();
+    //setUpCarListedListener("hamzaahmed");
+    //console.log("firebase?:" + firebase.database());
+    // console.log(firebase.name);
+    // console.log(firebase.database());
   }, []);
   // LogBox.ignoreLogs();
   return (
