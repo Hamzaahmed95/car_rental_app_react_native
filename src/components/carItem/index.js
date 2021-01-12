@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { styles } from "./styles";
 import firebase from "firebase";
+import Toast from "react-native-toast-message";
 
 const CarItem = props => {
   const [uris, setUri] = useState();
@@ -16,6 +17,32 @@ const CarItem = props => {
   //     console.log("URIS" + uris);
   //   })();
   // }, []);
+
+  const handleSubmit = item => {
+    console.log("which item is this?" + item + " ");
+    const registeredCar = {
+      car: item,
+      isRegistered: true,
+      registeredBy: "Hamza"
+    };
+    storeRegisteredCarList(registeredCar);
+  };
+  const storeRegisteredCarList = registeredCar => {
+    let registeredCarRef = firebase.database().ref("registeredCar");
+    let newCarRegisteredRef = registeredCarRef.push();
+    newCarRegisteredRef
+      .set(registeredCar)
+      .then(
+        setTimeout(() => {
+          props.navigation.goBack();
+          Toast.show({
+            text1: "Congrats",
+            text2: "Car has been registered 👋"
+          });
+        }, 2000)
+      )
+      .catch(err => showAlert("There is an error while uploading"));
+  };
 
   return (
     <View style={styles.container}>
@@ -39,7 +66,7 @@ const CarItem = props => {
       />
       <View style={styles.carrateContainer}>
         <Text style={styles.carratefont}>MYR 20.00 / HR</Text>
-        <TouchableOpacity onPress={props.handleSubmit}>
+        <TouchableOpacity onPress={() => handleSubmit(props.name)}>
           <Text style={styles.carratefontB}>BOOK NOW</Text>
         </TouchableOpacity>
       </View>

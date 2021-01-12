@@ -90,9 +90,9 @@ const ListYourCarScreen = props => {
   }
 
   const storeCarList = item => {
-    var postListRef = firebase.database().ref("rentCarsList");
-    var newPostRef = postListRef.push();
-    newPostRef
+    let carListRef = firebase.database().ref("rentCarsList");
+    let newCarRef = carListRef.push();
+    newCarRef
       .set(item)
       .then(uploadImageAsync(image, values.name))
       .then(

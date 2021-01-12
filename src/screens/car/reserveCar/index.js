@@ -8,9 +8,7 @@ import firebase from "firebase";
 
 const ReserveCarScreen = props => {
   const [data, setData] = useState([]);
-  const handleSubmit = () => {
-    props.navigation.navigate("Driving", { status: true });
-  };
+
   useEffect(() => {
     getData();
   }, []);
@@ -59,7 +57,7 @@ const ReserveCarScreen = props => {
           <Text style={styles.buttonContent}>00:30 AM - Wed, 28/09/2020</Text>
         </TouchableOpacity>
       </View>
-      <CarList handleSubmit={handleSubmit} data={data} />
+      <CarList navigation={props.navigation} data={data} />
     </View>
   );
 };

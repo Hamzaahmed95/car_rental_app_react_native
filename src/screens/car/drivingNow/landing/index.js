@@ -1,14 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, View, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { commonNavigation } from "../../../../utilities/AppUtils";
 import ActiveCar from "../activeCar/index";
 import { styles } from "./styles";
+import firebase from "firebase";
 
 const DriveNowScreen = props => {
-  const [driving, isDriving] = useState(false);
+  const [isDriving, setDriving] = useState(false);
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = () => {
+    firebase
+      .database()
+      .ref("registeredCar")
+      .orderByChild("registeredBy")
+      .equalTo("Hamza")
+      .on("value", snapshot => {
+        let isCarRegistered = false;
+        console.log(snapshot.val());
+        snapshot.forEach(function (data) {
+          if (data.child("isRegistered").val()) {
+            isCarRegistered = true;
+            console.log("true called");
+          }
+        });
+        setDriving(isCarRegistered);
+      });
+  };
   return (
     <View style={styles.container}>
-      {driving ? (
+      {isDriving ? (
         <ActiveCar />
       ) : (
         <View style={styles.containersub}>

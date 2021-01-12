@@ -11,7 +11,7 @@ const CarList = props => {
         data={props.data}
         renderItem={({ item }) => (
           <CarItem
-            handleSubmit={props.handleSubmit}
+            navigation={props.navigation}
             name={item.name}
             color={item.color}
             source={item.image}
