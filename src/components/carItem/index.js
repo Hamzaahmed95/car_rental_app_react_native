@@ -3,21 +3,9 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 import { styles } from "./styles";
 import firebase from "firebase";
 import Toast from "react-native-toast-message";
-
+import { connect } from "react-redux";
+import { reserve_car } from "../../actions/reservedCar";
 const CarItem = props => {
-  const [uris, setUri] = useState();
-  // useEffect(async () => {
-  //   getImages();
-  //   (async function getImages() {
-  //     const ref = firebase
-  //       .storage()
-  //       .ref()
-  //       .child("uploads/" + props.name);
-  //     setUri(await ref.getDownloadURL());
-  //     console.log("URIS" + uris);
-  //   })();
-  // }, []);
-
   const handleSubmit = item => {
     console.log("which item is this?" + item + " ");
     const registeredCar = {
@@ -25,23 +13,7 @@ const CarItem = props => {
       isRegistered: true,
       registeredBy: "Hamza"
     };
-    storeRegisteredCarList(registeredCar);
-  };
-  const storeRegisteredCarList = registeredCar => {
-    let registeredCarRef = firebase.database().ref("registeredCar");
-    let newCarRegisteredRef = registeredCarRef.push();
-    newCarRegisteredRef
-      .set(registeredCar)
-      .then(
-        setTimeout(() => {
-          props.navigation.goBack();
-          Toast.show({
-            text1: "Congrats",
-            text2: "Car has been registered 👋"
-          });
-        }, 2000)
-      )
-      .catch(err => showAlert("There is an error while uploading"));
+    props.reserve_car(registeredCar, props);
   };
 
   return (
@@ -73,5 +45,8 @@ const CarItem = props => {
     </View>
   );
 };
+const mapStateToProps = state => ({
+  isDataLoaded: state.reserve_car.isDataLoaded
+});
 
-export default CarItem;
+export default connect(mapStateToProps, { reserve_car })(CarItem);
