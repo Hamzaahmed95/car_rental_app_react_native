@@ -1,14 +1,15 @@
 import React from "react";
 import { Text, TouchableOpacity, View, Image } from "react-native";
 import { styles } from "./styles";
-const ActiveCarScreen = () => {
+const ActiveCarScreen = ({ carDetails }) => {
+  console.log("hamza" + JSON.stringify(carDetails));
   return (
     <View style={styles.container}>
       <Text style={{ paddingLeft: 10, fontSize: 20, fontWeight: "500" }}>
-        Toyota Supra
+        {carDetails.name}
       </Text>
       <Text style={{ paddingLeft: 10, fontSize: 14, fontWeight: "normal" }}>
-        VCG 7335
+        {carDetails.color}
       </Text>
       <View style={styles.subContainer}>
         <Image
@@ -21,19 +22,19 @@ const ActiveCarScreen = () => {
           <Text style={{ color: "rgba(0, 0, 0, 0.6)", fontSize: 12 }}>
             Car Type
           </Text>
-          <Text>Sedan</Text>
+          <Text>{carDetails.type}</Text>
         </View>
         <View>
           <Text style={{ color: "rgba(0, 0, 0, 0.6)", fontSize: 12 }}>
             Seater
           </Text>
-          <Text>6</Text>
+          <Text>{carDetails.seating}</Text>
         </View>
         <View>
           <Text style={{ color: "rgba(0, 0, 0, 0.6)", fontSize: 12 }}>
             Transmission
           </Text>
-          <Text>Automatic</Text>
+          <Text>{carDetails.transmission}</Text>
         </View>
       </View>
       <View style={styles.statusContent}>

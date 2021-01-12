@@ -7,6 +7,7 @@ import firebase from "firebase";
 
 const DriveNowScreen = props => {
   const [isDriving, setDriving] = useState(false);
+  const [carDetails, setCarDetails] = useState(false);
   useEffect(() => {
     getData();
   }, []);
@@ -19,20 +20,37 @@ const DriveNowScreen = props => {
       .equalTo("Hamza")
       .on("value", snapshot => {
         let isCarRegistered = false;
+        let car = "";
         console.log(snapshot.val());
         snapshot.forEach(function (data) {
+          car = data.child("car").val();
+          if (car) {
+            getCarDetails(car);
+          }
           if (data.child("isRegistered").val()) {
             isCarRegistered = true;
-            console.log("true called");
           }
         });
         setDriving(isCarRegistered);
       });
   };
+  getCarDetails = car => {
+    firebase
+      .database()
+      .ref("rentCarsList")
+      .orderByChild("name")
+      .equalTo(car)
+      .on("value", snapshot => {
+        snapshot.forEach(function (data) {
+          console.log("carobject:" + JSON.stringify(data.val()));
+          setCarDetails(data.val());
+        });
+      });
+  };
   return (
     <View style={styles.container}>
       {isDriving ? (
-        <ActiveCar />
+        <ActiveCar carDetails={carDetails} />
       ) : (
         <View style={styles.containersub}>
           <Image
