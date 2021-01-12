@@ -11,7 +11,8 @@ const CarItem = props => {
     const registeredCar = {
       car: item,
       isRegistered: true,
-      registeredBy: "Hamza"
+      registeredBy: "Hamza",
+      isDriving: false
     };
     props.reserve_car(registeredCar, props);
   };

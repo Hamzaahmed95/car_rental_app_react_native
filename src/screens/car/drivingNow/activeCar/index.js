@@ -1,11 +1,58 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, TouchableOpacity, View, Image } from "react-native";
 import { styles } from "./styles";
+import firebase from "firebase";
 
 import { AnimatedCircularProgress } from "react-native-circular-progress";
 const ActiveCarScreen = ({ carDetails }) => {
   const [active, isCarActive] = useState(false);
   const [loading, isLoading] = useState(false);
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const isCarStarted = () => {
+    firebase
+      .database()
+      .ref("registeredCar")
+      .orderByChild("registeredBy")
+      .equalTo("Hamza")
+      .once("value", snapshot => {
+        snapshot.forEach(function (data) {
+          let key = data.key;
+          data.ref.child("isDriving").set(true);
+
+          // firebase
+          //   .database()
+          //   .ref("registeredCar")
+          //   .child("isDriving")
+          //   .update({ isDriving: true, _key: key });
+        });
+      });
+  };
+  const getData = () => {
+    firebase
+      .database()
+      .ref("registeredCar")
+      .orderByChild("registeredBy")
+      .equalTo("Hamza")
+      .on("value", snapshot => {
+        let isCarStarted = false;
+        let car = "";
+        console.log(snapshot.val());
+        snapshot.forEach(function (data) {
+          car = data.child("car").val();
+          // if (car) {
+          //  // getCarDetails(car);
+          // }
+          if (data.child("isDriving").val()) {
+            isCarStarted = true;
+          }
+        });
+        isCarActive(isCarStarted);
+      });
+  };
 
   return (
     <View style={styles.container}>
@@ -85,6 +132,7 @@ const ActiveCarScreen = ({ carDetails }) => {
             style={styles.buttonContainer}
             onPress={() => {
               // props.navigation.navigate("Reservation");
+              isCarStarted();
               isLoading(true);
             }}
           >
