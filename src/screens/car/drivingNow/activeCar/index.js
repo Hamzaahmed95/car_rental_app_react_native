@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text, TouchableOpacity, View, Image } from "react-native";
 import { styles } from "./styles";
+
+import { AnimatedCircularProgress } from "react-native-circular-progress";
 const ActiveCarScreen = ({ carDetails }) => {
-  console.log("hamza" + JSON.stringify(carDetails));
+  const [active, isCarActive] = useState(false);
+  const [loading, isLoading] = useState(false);
+
   return (
     <View style={styles.container}>
       <Text style={{ paddingLeft: 10, fontSize: 20, fontWeight: "500" }}>
@@ -37,36 +41,101 @@ const ActiveCarScreen = ({ carDetails }) => {
           <Text>{carDetails.transmission}</Text>
         </View>
       </View>
-      <View style={styles.statusContent}>
-        <Text style={{ fontSize: 16, color: "rgba(0, 0, 0, 0.6)" }}>
-          Booking starts at
-        </Text>
-        <Text
-          style={{
-            fontSize: 20,
-            color: "rgba(0, 0, 0, 0.6)",
-            fontWeight: "500"
+      {loading && (
+        <AnimatedCircularProgress
+          style={styles.animatedCircular}
+          size={50}
+          width={10}
+          fill={100}
+          duration={2000}
+          tintColor="#00e0ff"
+          onAnimationComplete={() => {
+            // isCarActive(!isCarActive);
+            isCarActive(true);
+            isLoading(false);
           }}
-        >
-          Wed 09/09/2020
-        </Text>
-      </View>
-      <View
-        style={{
-          marginTop: 20,
-          marginBottom: 20,
-          borderWidth: 0.5,
-          borderColor: "#ddd"
-        }}
-      />
-      <TouchableOpacity
-        style={styles.buttonContainer}
-        onPress={() => {
-          // props.navigation.navigate("Reservation");
-        }}
-      >
-        <Text style={styles.buttonContent}>START DRIVING</Text>
-      </TouchableOpacity>
+          backgroundColor="#3d5875"
+        />
+      )}
+      {!active ? (
+        <View>
+          <View style={styles.statusContent}>
+            <Text style={{ fontSize: 16, color: "rgba(0, 0, 0, 0.6)" }}>
+              Booking starts at
+            </Text>
+            <Text
+              style={{
+                fontSize: 20,
+                color: "rgba(0, 0, 0, 0.6)",
+                fontWeight: "500"
+              }}
+            >
+              Wed 09/09/2020
+            </Text>
+          </View>
+          <View
+            style={{
+              marginTop: 20,
+              marginBottom: 20,
+              borderWidth: 0.5,
+              borderColor: "#ddd"
+            }}
+          />
+          <TouchableOpacity
+            style={styles.buttonContainer}
+            onPress={() => {
+              // props.navigation.navigate("Reservation");
+              isLoading(true);
+            }}
+          >
+            <Text style={styles.buttonContent}>START DRIVING</Text>
+          </TouchableOpacity>
+        </View>
+      ) : (
+        <View>
+          <View style={styles.statusContent}>
+            <View style={styles.lockContent}>
+              <View style={styles.lockItem}>
+                <Image
+                  style={styles.lock}
+                  source={require("../../../../../assets/lock_open.png")}
+                />
+              </View>
+              <View style={styles.lockItem}>
+                <Image
+                  style={styles.lock}
+                  source={require("../../../../../assets/lock.png")}
+                />
+              </View>
+              <View style={styles.lockItemContent}>
+                <Text style={styles.lockItemText}>LOCK CAR</Text>
+              </View>
+            </View>
+            <View style={styles.timeEndingContent}>
+              <Text style={styles.timeEndingText}>Time ending in</Text>
+              <Text style={styles.timeEndingDayText}>1 Day </Text>
+            </View>
+          </View>
+          <View
+            style={{
+              marginTop: 20,
+              marginBottom: 20,
+              borderWidth: 0.5,
+              borderColor: "#ddd"
+            }}
+          />
+          <TouchableOpacity
+            style={styles.buttonActiveContainer}
+            onPress={() => {
+              // props.navigation.navigate("Reservation");
+              //isLoading(true);
+            }}
+          >
+            <Text style={styles.buttonActiveContent}>EXTEND</Text>
+            <Text style={styles.buttonActiveContent}>RETURN</Text>
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 };
