@@ -14,23 +14,6 @@ const ReserveCarScreen = props => {
     props.getAllCar();
     // getData();
   }, []);
-
-  const getData = () => {
-    let dataList = [];
-    firebase
-      .database()
-      .ref("rentCarsList")
-      .orderByChild("name")
-      .once("value")
-      .then(snapshot => {
-        snapshot.forEach(child => {
-          console.log(child.val());
-          setData(...data, child.val());
-          dataList.push(child.val());
-        });
-        setData(dataList);
-      });
-  };
   return (
     <View style={styles.container}>
       <View style={styles.subcontainer}>

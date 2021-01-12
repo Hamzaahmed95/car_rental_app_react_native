@@ -5,9 +5,11 @@ import { globalStyles } from "../../../styles/global";
 import { styles } from "./styles";
 import ImagePickerComp from "../../../utilities/ImagePicker";
 import { useForm } from "../../../customHooks/useForm";
-import Toast from "react-native-toast-message";
+
 import { AnimatedCircularProgress } from "react-native-circular-progress";
 import firebase from "firebase";
+import { createCarList } from "../../../actions/myCarList";
+import { connect } from "react-redux";
 
 import {
   fuelData,
@@ -56,72 +58,14 @@ const ListYourCarScreen = props => {
       showAlert("Kindly fill all the fields");
     } else {
       isLoading(true);
-
-      storeCarList(object);
+      props.createCarList(object, props);
       console.log(object);
     }
   };
-
-  async function uploadImageAsync(uri, name) {
-    const blob = await new Promise((resolve, reject) => {
-      const xhr = new XMLHttpRequest();
-      xhr.onload = function () {
-        resolve(xhr.response);
-      };
-      xhr.onerror = function (e) {
-        console.log(e);
-        reject(new TypeError("Network request failed"));
-      };
-      xhr.responseType = "blob";
-      xhr.open("GET", uri, true);
-      xhr.send(null);
-    });
-
-    const ref = firebase
-      .storage()
-      .ref()
-      .child("uploads/" + name);
-    const snapshot = await ref.put(blob);
-
-    // We're done with the blob, close and release it
-    blob.close();
-
-    return await snapshot.ref.getDownloadURL();
-  }
-
-  const storeCarList = item => {
-    let carListRef = firebase.database().ref("rentCarsList");
-    let newCarRef = carListRef.push();
-    newCarRef
-      .set(item)
-      .then(uploadImageAsync(image, values.name))
-      .then(
-        setTimeout(() => {
-          props.navigation.goBack();
-          Toast.show({
-            text1: "Congrats",
-            text2: "Car added succesfully 👋"
-          });
-        }, 2000)
-      )
-      .catch(err => showAlert("There is an error while uploading"));
-  };
-
   useEffect(() => {
     YellowBox.ignoreWarnings(["Animated: `useNativeDriver`"]);
     checkImageStatus();
-    console.log("hamza ahmed");
-    getData();
   }, []);
-  const getData = () => {
-    firebase
-      .database()
-      .ref("rentCarsList")
-      .once("value")
-      .then(snapshot => {
-        console.log(snapshot.val());
-      });
-  };
 
   return (
     <View style={globalStyles.container}>
@@ -133,7 +77,9 @@ const ListYourCarScreen = props => {
           fill={100}
           duration={2000}
           tintColor="#00e0ff"
-          onAnimationComplete={() => console.log("onAnimationComplete")}
+          onAnimationComplete={() =>
+            console.log("onAnimationComplete" + props.status)
+          }
           backgroundColor="#3d5875"
         />
       ) : (
@@ -238,4 +184,9 @@ const ListYourCarScreen = props => {
 };
 
 ListYourCarScreen.navigationOptions = commonNavigation("List your car");
-export default ListYourCarScreen;
+
+const mapStateToProps = state => ({
+  status: state.my_car.status
+});
+
+export default connect(mapStateToProps, { createCarList })(ListYourCarScreen);

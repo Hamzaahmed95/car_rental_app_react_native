@@ -1,5 +1,6 @@
 const initialState = {
-  myCar: []
+  myCar: [],
+  status: false
 };
 
 export default function (state = initialState, action) {
@@ -8,6 +9,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         myCar: action.payload
+      };
+    case "CREATE_A_CAR":
+      return {
+        ...state,
+        status: action.payload
       };
     default:
       return state;
