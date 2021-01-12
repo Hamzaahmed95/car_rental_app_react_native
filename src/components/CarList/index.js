@@ -14,6 +14,7 @@ const CarList = props => {
             handleSubmit={props.handleSubmit}
             name={item.name}
             color={item.color}
+            source={item.image}
           />
         )}
       />

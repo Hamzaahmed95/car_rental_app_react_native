@@ -53,7 +53,7 @@ const ListYourCarScreen = props => {
       image
     };
     if (isEmpty(object)) {
-      showAlert();
+      showAlert("Kindly fill all the fields");
     } else {
       isLoading(true);
 
@@ -61,15 +61,6 @@ const ListYourCarScreen = props => {
       console.log(object);
     }
   };
-  // const setUpCarListedListener = userId => {
-  //   firebase
-  //     .database()
-  //     .ref("cars/" + userId)
-  //     .on("value", snapshot => {
-  //       const car = snapshot.val().car;
-  //       console.log("New car added: " + car);
-  //     });
-  // };
 
   async function uploadImageAsync(uri, name) {
     const blob = await new Promise((resolve, reject) => {
@@ -104,42 +95,34 @@ const ListYourCarScreen = props => {
     newPostRef
       .set(item)
       .then(uploadImageAsync(image, values.name))
-      .then(response => console.log(response))
-      .catch(err => console.log("error: " + err));
-
-    // setTimeout(() => {
-    //   props.navigation.goBack();
-    //   Toast.show({
-    //     text1: "Congrats",
-    //     text2: "Car added succesfully 👋"
-    //   });
-    // }, 2000)
-  };
-  const storeHighScore = (userId, carItem) => {
-    firebase
-      .database()
-      .ref("cars/" + userId)
-      .set({
-        car: carItem
-      })
-      .then(response => {
-        console.log(response);
-        // navigation.navigate("Home", { user: data });
-      })
-      .catch(error => {
-        console.log(error);
-      });
+      .then(
+        setTimeout(() => {
+          props.navigation.goBack();
+          Toast.show({
+            text1: "Congrats",
+            text2: "Car added succesfully 👋"
+          });
+        }, 2000)
+      )
+      .catch(err => showAlert("There is an error while uploading"));
   };
 
   useEffect(() => {
     YellowBox.ignoreWarnings(["Animated: `useNativeDriver`"]);
     checkImageStatus();
-    //setUpCarListedListener("hamzaahmed");
-    //console.log("firebase?:" + firebase.database());
-    // console.log(firebase.name);
-    // console.log(firebase.database());
+    console.log("hamza ahmed");
+    getData();
   }, []);
-  // LogBox.ignoreLogs();
+  const getData = () => {
+    firebase
+      .database()
+      .ref("rentCarsList")
+      .once("value")
+      .then(snapshot => {
+        console.log(snapshot.val());
+      });
+  };
+
   return (
     <View style={globalStyles.container}>
       {Loading ? (

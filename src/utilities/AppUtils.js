@@ -92,10 +92,10 @@ export const isEmpty = values => {
   return isEmptys;
 };
 
-export const showAlert = () =>
+export const showAlert = name =>
   Alert.alert(
     "Error",
-    "Kindly fill all the fields",
+    name,
     [{ text: "OK", onPress: () => console.log("OK Pressed") }],
     { cancelable: false }
   );

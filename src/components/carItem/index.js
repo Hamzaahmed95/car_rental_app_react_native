@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { styles } from "./styles";
+import firebase from "firebase";
 
 const CarItem = props => {
+  const [uris, setUri] = useState();
+  // useEffect(async () => {
+  //   getImages();
+  //   (async function getImages() {
+  //     const ref = firebase
+  //       .storage()
+  //       .ref()
+  //       .child("uploads/" + props.name);
+  //     setUri(await ref.getDownloadURL());
+  //     console.log("URIS" + uris);
+  //   })();
+  // }, []);
+
   return (
     <View style={styles.container}>
       <View style={styles.subcontainers}>
