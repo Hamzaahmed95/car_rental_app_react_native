@@ -5,12 +5,14 @@ import { carData } from "../../../utilities/dummyData/index";
 import CarList from "../../../components/CarList";
 import { styles } from "./styles";
 import firebase from "firebase";
-
+import { getAllCar } from "../../../actions/myCarList";
+import { connect } from "react-redux";
 const ReserveCarScreen = props => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    getData();
+    props.getAllCar();
+    // getData();
   }, []);
 
   const getData = () => {
@@ -57,10 +59,17 @@ const ReserveCarScreen = props => {
           <Text style={styles.buttonContent}>00:30 AM - Wed, 28/09/2020</Text>
         </TouchableOpacity>
       </View>
-      <CarList navigation={props.navigation} data={data} />
+      {console.log("my cars: " + props.mycar)}
+      <CarList navigation={props.navigation} data={props.mycar} />
+      {console.log("my cars: " + props.mycar)}
     </View>
   );
 };
 
 ReserveCarScreen.navigationOptions = commonNavigation("Make a Reservation");
-export default ReserveCarScreen;
+
+const mapStateToProps = state => ({
+  mycar: state.my_car.myCar
+});
+
+export default connect(mapStateToProps, { getAllCar })(ReserveCarScreen);
