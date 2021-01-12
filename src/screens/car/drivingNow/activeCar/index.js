@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Text, TouchableOpacity, View, Image } from "react-native";
 import { styles } from "./styles";
 import firebase from "firebase";
-
+import { connect } from "react-redux";
+import { returned_car } from "../../../../actions/returnedCar";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
-const ActiveCarScreen = ({ carDetails }) => {
+const ActiveCarScreen = props => {
   const [active, isCarActive] = useState(false);
   const [loading, isLoading] = useState(false);
 
@@ -20,14 +21,7 @@ const ActiveCarScreen = ({ carDetails }) => {
       .equalTo("Hamza")
       .once("value", snapshot => {
         snapshot.forEach(function (data) {
-          let key = data.key;
           data.ref.child("isDriving").set(true);
-
-          // firebase
-          //   .database()
-          //   .ref("registeredCar")
-          //   .child("isDriving")
-          //   .update({ isDriving: true, _key: key });
         });
       });
   };
@@ -39,13 +33,7 @@ const ActiveCarScreen = ({ carDetails }) => {
       .equalTo("Hamza")
       .on("value", snapshot => {
         let isCarStarted = false;
-        let car = "";
-        console.log(snapshot.val());
         snapshot.forEach(function (data) {
-          car = data.child("car").val();
-          // if (car) {
-          //  // getCarDetails(car);
-          // }
           if (data.child("isDriving").val()) {
             isCarStarted = true;
           }
@@ -54,13 +42,31 @@ const ActiveCarScreen = ({ carDetails }) => {
       });
   };
 
+  const setPastBooking = () => {
+    props.returned_car(props.carDetails, props.navigate);
+    returnedCar();
+  };
+
+  const returnedCar = () => {
+    firebase
+      .database()
+      .ref("registeredCar")
+      .orderByChild("registeredBy")
+      .equalTo("Hamza")
+      .once("value", snapshot => {
+        snapshot.forEach(function (data) {
+          data.ref.child("isRegistered").set(false);
+        });
+      });
+  };
+
   return (
     <View style={styles.container}>
       <Text style={{ paddingLeft: 10, fontSize: 20, fontWeight: "500" }}>
-        {carDetails.name}
+        {props.carDetails.name}
       </Text>
       <Text style={{ paddingLeft: 10, fontSize: 14, fontWeight: "normal" }}>
-        {carDetails.color}
+        {props.carDetails.color}
       </Text>
       <View style={styles.subContainer}>
         <Image
@@ -73,19 +79,19 @@ const ActiveCarScreen = ({ carDetails }) => {
           <Text style={{ color: "rgba(0, 0, 0, 0.6)", fontSize: 12 }}>
             Car Type
           </Text>
-          <Text>{carDetails.type}</Text>
+          <Text>{props.carDetails.type}</Text>
         </View>
         <View>
           <Text style={{ color: "rgba(0, 0, 0, 0.6)", fontSize: 12 }}>
             Seater
           </Text>
-          <Text>{carDetails.seating}</Text>
+          <Text>{props.carDetails.seating}</Text>
         </View>
         <View>
           <Text style={{ color: "rgba(0, 0, 0, 0.6)", fontSize: 12 }}>
             Transmission
           </Text>
-          <Text>{carDetails.transmission}</Text>
+          <Text>{props.carDetails.transmission}</Text>
         </View>
       </View>
       {loading && (
@@ -177,6 +183,7 @@ const ActiveCarScreen = ({ carDetails }) => {
             onPress={() => {
               // props.navigation.navigate("Reservation");
               //isLoading(true);
+              setPastBooking();
             }}
           >
             <Text style={styles.buttonActiveContent}>EXTEND</Text>
@@ -187,5 +194,8 @@ const ActiveCarScreen = ({ carDetails }) => {
     </View>
   );
 };
+const mapStateToProps = state => ({
+  isDataLoaded: state.reserve_car.isDataLoaded
+});
 
-export default ActiveCarScreen;
+export default connect(mapStateToProps, { returned_car })(ActiveCarScreen);

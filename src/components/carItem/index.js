@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { styles } from "./styles";
-import firebase from "firebase";
-import Toast from "react-native-toast-message";
 import { connect } from "react-redux";
 import { reserve_car } from "../../actions/reservedCar";
 const CarItem = props => {

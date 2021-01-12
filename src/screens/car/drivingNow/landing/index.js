@@ -50,7 +50,7 @@ const DriveNowScreen = props => {
   return (
     <View style={styles.container}>
       {isDriving ? (
-        <ActiveCar carDetails={carDetails} />
+        <ActiveCar carDetails={carDetails} navigate={props} />
       ) : (
         <View style={styles.containersub}>
           <Image
