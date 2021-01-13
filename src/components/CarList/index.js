@@ -2,6 +2,7 @@ import React from "react";
 import CarItem from "../carItem/index";
 import { SafeAreaView, FlatList, StatusBar } from "react-native";
 
+//lit of rent a car
 const CarList = props => {
   return (
     <SafeAreaView
