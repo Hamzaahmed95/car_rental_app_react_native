@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, Image, TouchableOpacity } from "react-native";
 import { commonNavigation } from "../../../utilities/AppUtils";
-import CarList from "../../../components/carList";
+import CarListWrapper from "../../../components/carListWrapper";
 import { styles } from "./styles";
 import { getAllCar } from "../../../actions/rentCarList";
 import { connect } from "react-redux";
+
 const ReserveCarScreen = props => {
   useEffect(() => {
     props.getAllCar();
@@ -37,7 +38,11 @@ const ReserveCarScreen = props => {
           <Text style={styles.buttonContent}>00:30 AM - Wed, 28/09/2020</Text>
         </TouchableOpacity>
       </View>
-      <CarList navigation={props.navigation} data={props.mycar} flag={true} />
+      <CarListWrapper
+        navigation={props.navigation}
+        data={props.mycar}
+        flag={true}
+      />
     </View>
   );
 };
