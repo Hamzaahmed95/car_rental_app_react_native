@@ -1,12 +1,15 @@
 import React from "react";
 import CarItem from "../carItem/index";
-import { SafeAreaView, FlatList } from "react-native";
-import { styles } from "./styles";
+import { SafeAreaView, FlatList, StatusBar } from "react-native";
 
 const CarList = props => {
   return (
-    <SafeAreaView style={styles.container}>
-      {console.log(props.data)}
+    <SafeAreaView
+      style={{
+        flex: 1,
+        marginTop: StatusBar.currentHeight || 0
+      }}
+    >
       <FlatList
         data={props.data}
         renderItem={({ item }) => (

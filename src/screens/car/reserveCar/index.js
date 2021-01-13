@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Text, View, Image, TouchableOpacity } from "react-native";
 import { commonNavigation } from "../../../utilities/AppUtils";
 import { carData } from "../../../utilities/dummyData/index";
-import CarList from "../../../components/CarList";
+import CarList from "../../../components/carList";
 import { styles } from "./styles";
 import firebase from "firebase";
 import { getAllCar } from "../../../actions/myCarList";
@@ -42,9 +42,7 @@ const ReserveCarScreen = props => {
           <Text style={styles.buttonContent}>00:30 AM - Wed, 28/09/2020</Text>
         </TouchableOpacity>
       </View>
-      {console.log("my cars: " + props.mycar)}
-      <CarList navigation={props.navigation} data={props.mycar} />
-      {console.log("my cars: " + props.mycar)}
+      <CarList navigation={props.navigation} data={props.mycar} flag={true} />
     </View>
   );
 };

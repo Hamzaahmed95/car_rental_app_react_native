@@ -1,21 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { styles } from "./styles";
-import { connect } from "react-redux";
-import { reserve_car } from "../../actions/reservedCar";
 
-const CarItem = props => {
-  const handleSubmit = item => {
-    const registeredCar = {
-      car: item,
-      isRegistered: true,
-      registeredBy: "Hamza",
-      isDriving: false
-    };
-    props.reserve_car(registeredCar, props);
-  };
-  console.log("=>" + props.flag);
-
+const PastBookingItem = props => {
   return (
     <View style={styles.container}>
       <View style={styles.subcontainers}>
@@ -38,15 +25,13 @@ const CarItem = props => {
       />
       <View style={styles.carrateContainer}>
         <Text style={styles.carratefont}>MYR 20.00 / HR</Text>
-        <TouchableOpacity onPress={() => handleSubmit(props.name)}>
-          <Text style={styles.carratefontB}>BOOK NOW</Text>
+
+        <TouchableOpacity onPress={() => console.log("clicked!")}>
+          <Text style={styles.carratefontB}>Check Details</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 };
-const mapStateToProps = state => ({
-  isDataLoaded: state.reserve_car.isDataLoaded
-});
 
-export default connect(mapStateToProps, { reserve_car })(CarItem);
+export default PastBookingItem;

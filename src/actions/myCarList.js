@@ -11,7 +11,6 @@ export const getAllCar = () => dispatch => {
     .once("value")
     .then(snapshot => {
       snapshot.forEach(child => {
-        console.log("********");
         dataList.push(child.val());
       });
       dispatch({
@@ -20,7 +19,6 @@ export const getAllCar = () => dispatch => {
       });
     })
     .catch(error => {
-      console.log(error);
       dispatch({
         type: GET_ALL_CARS,
         payload: []
@@ -63,7 +61,6 @@ async function uploadImageAsync(uri, name) {
       resolve(xhr.response);
     };
     xhr.onerror = function (e) {
-      console.log(e);
       reject(new TypeError("Network request failed"));
     };
     xhr.responseType = "blob";

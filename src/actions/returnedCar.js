@@ -1,5 +1,5 @@
 import firebase from "firebase";
-import { RETURN_CAR } from "./types";
+import { RETURN_CAR, GET_MY_PAST_BOOKINGS } from "./types";
 
 import Toast from "react-native-toast-message";
 
@@ -27,4 +27,21 @@ export const returned_car = (pastBooking, props) => dispatch => {
         payload: false
       })
     );
+};
+
+export const getMyPastBooking = () => dispatch => {
+  firebase
+    .database()
+    .ref("pastBooking")
+    .orderByChild("name")
+    .on("value", snapshot => {
+      let dataList = [];
+      snapshot.forEach(child => {
+        dataList.push(child.val());
+      });
+      dispatch({
+        type: "PAST",
+        payload: dataList
+      });
+    });
 };

@@ -59,7 +59,6 @@ const ListYourCarScreen = props => {
     } else {
       isLoading(true);
       props.createCarList(object, props);
-      console.log(object);
     }
   };
   useEffect(() => {
@@ -77,9 +76,6 @@ const ListYourCarScreen = props => {
           fill={100}
           duration={2000}
           tintColor="#00e0ff"
-          onAnimationComplete={() =>
-            console.log("onAnimationComplete" + props.status)
-          }
           backgroundColor="#3d5875"
         />
       ) : (
