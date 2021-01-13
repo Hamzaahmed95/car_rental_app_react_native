@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, Image, StyleSheet, TouchableOpacity } from "react-native";
-import { commonNavigation } from "../../../../utilities/AppUtils";
-import ActiveCar from "../activeCar/index";
+import { Text, View, Image, TouchableOpacity } from "react-native";
+import { commonNavigation } from "../../../utilities/AppUtils";
+import ActiveCar from "../../../components/activeCar/index";
 import { styles } from "./styles";
 import firebase from "firebase";
 
@@ -53,7 +53,7 @@ const DriveNowScreen = props => {
         <View style={styles.containersub}>
           <Image
             style={styles.tinyLogo}
-            source={require("../../../../../assets/car.png")}
+            source={require("../../../../assets/car.png")}
           />
           <Text style={styles.content}>Not driving a car yet</Text>
           <TouchableOpacity

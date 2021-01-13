@@ -3,7 +3,7 @@ import {
   appBackgrounColor,
   appColor,
   btnFontColor
-} from "../../../../utilities/Consants/Colors";
+} from "../../../utilities/Consants/Colors";
 
 export const styles = StyleSheet.create({
   container: {

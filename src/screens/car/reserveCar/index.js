@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, Image, TouchableOpacity } from "react-native";
 import { commonNavigation } from "../../../utilities/AppUtils";
-import { carData } from "../../../utilities/dummyData/index";
 import CarList from "../../../components/carList";
 import { styles } from "./styles";
-import firebase from "firebase";
-import { getAllCar } from "../../../actions/myCarList";
+import { getAllCar } from "../../../actions/rentCarList";
 import { connect } from "react-redux";
 const ReserveCarScreen = props => {
-  const [data, setData] = useState([]);
-
   useEffect(() => {
     props.getAllCar();
-    // getData();
   }, []);
   return (
     <View style={styles.container}>

@@ -1,5 +1,5 @@
 import firebase from "firebase";
-import { RETURN_CAR, GET_MY_PAST_BOOKINGS } from "./types";
+import { RETURN_CAR } from "./types";
 
 import Toast from "react-native-toast-message";
 

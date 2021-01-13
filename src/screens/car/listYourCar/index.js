@@ -5,12 +5,9 @@ import { globalStyles } from "../../../styles/global";
 import { styles } from "./styles";
 import ImagePickerComp from "../../../utilities/ImagePicker";
 import { useForm } from "../../../customHooks/useForm";
-
 import { AnimatedCircularProgress } from "react-native-circular-progress";
-import firebase from "firebase";
-import { createCarList } from "../../../actions/myCarList";
+import { createCarList } from "../../../actions/rentCarList";
 import { connect } from "react-redux";
-
 import {
   fuelData,
   typeData,
@@ -28,12 +25,13 @@ import {
   Text,
   YellowBox,
   LogBox,
-  Platform,
   TouchableOpacity,
   ScrollView
 } from "react-native";
-LogBox.ignoreLogs(["Warning: ..."]); // Ignore log notification by message
-LogBox.ignoreAllLogs(); //Ignore all log notifications
+
+LogBox.ignoreLogs(["Warning: ..."]);
+LogBox.ignoreAllLogs();
+
 const ListYourCarScreen = props => {
   const [values, handleChange] = useForm({
     name: "",
@@ -61,6 +59,7 @@ const ListYourCarScreen = props => {
       props.createCarList(object, props);
     }
   };
+
   useEffect(() => {
     YellowBox.ignoreWarnings(["Animated: `useNativeDriver`"]);
     checkImageStatus();
@@ -116,7 +115,6 @@ const ListYourCarScreen = props => {
                 />
               </View>
             </View>
-
             <View style={styles.container1}>
               <View style={styles.inputs} useNativeDriver={true}>
                 <Dropdown
@@ -152,7 +150,6 @@ const ListYourCarScreen = props => {
               heightPercentage={1}
               widthPercentage={80}
             />
-
             <Text>{values.rate}</Text>
             <Text style={globalStyles.heading}>Address line</Text>
             <TextInput
@@ -165,7 +162,6 @@ const ListYourCarScreen = props => {
               image={image}
               pickImage={async () => setImage(await pickImages())}
             />
-
             <TouchableOpacity
               onPress={handleSubmit}
               style={globalStyles.appButtonContainer}

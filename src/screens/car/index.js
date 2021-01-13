@@ -4,8 +4,8 @@ import { createAppContainer } from "react-navigation";
 import { createMaterialTopTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack";
 
-import DrivingScreen from "./drivingNow/landing/index";
-import PastBookingScreen from "./pastBooking/index";
+import DrivingScreen from "./drivingScreen/index";
+import PastBookingScreen from "./pastBookingScreen/index";
 
 const DrivingStack = createStackNavigator(
   {

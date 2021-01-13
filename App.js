@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from "react";
+import React, { Component } from "react";
 import MainApp from "./src/Main";
 import Toast from "react-native-toast-message";
 

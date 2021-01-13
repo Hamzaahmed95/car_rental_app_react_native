@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { appDisableColor } from "../../../../utilities/Consants/Colors";
+import { appDisableColor } from "../../utilities/Consants/Colors";
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
