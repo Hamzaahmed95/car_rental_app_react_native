@@ -2,6 +2,8 @@
 
 A cross platform car rental app built on react native
 
+<img width="601" alt="Screenshot 2021-02-06 at 10 12 40 PM" src="https://user-images.githubusercontent.com/12881181/107120511-fea66e00-68c8-11eb-88d9-4396a50d4967.png">
+
 ## Features
 
 1. Users can list their cars on rent
@@ -25,8 +27,3 @@ cd <DIRECTORY>
 yarn install //install all the dependencies using yarn
 npm start   //run your react native app
 ```
-
-## Images
-![Image](https://www.canva.com/design/DAEVXsL4SEk/xJ4tplgm4PsX3OGfgdnudg/view)
-
-
